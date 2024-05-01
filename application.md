@@ -1,0 +1,9 @@
+arandr
+autorandr
+xorg-xrandr
+chezmoi
+git
+make
+gettext
+clang
+gcc
