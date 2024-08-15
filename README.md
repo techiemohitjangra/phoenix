@@ -2,16 +2,23 @@
 Phoenix is a tool to setup configurations and tools for a fresh linux installation and development environment.
 
 ## Requirements
-Install chezmoi
+- Install chezmoi
 ``` sh
 # for debian or ubuntu
 sudo apt install chezmoi
 
 # for arch
 sudo pacman -Sy chezmoi
+
+# setup
+chezmoi --source $HOME/learning/phoenix/dotfiles apply
 ```
 
-## setup
+- Install chezmoi
 ``` sh
-chezmoi --source-path $HOME/learning/phoenix/dotfiles --apply
+# for debian or ubuntu
+sudo apt install chezmoi
+
+# for arch
+sudo pacman -Sy chezmoi
 ```
