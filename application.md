@@ -29,6 +29,7 @@ oh-my-zsh
 tmux
 playerctl
 xclip
+screenkey
 
 ## Tools/Utilities
 htop
