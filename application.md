@@ -7,6 +7,7 @@ xorg-xrandr
 i3
 blueman
 dunst
+libnotify-bin
 
 ## Development
 git
