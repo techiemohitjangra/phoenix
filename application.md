@@ -10,17 +10,27 @@ dunst
 libnotify-bin
 
 ## Development
+### performance testing and profiling tools
+Tracy (Ztracy from zig-gamedev)(github.com/wolfpld/tracy)
+afl (american fuzzy lop)
+valgrind
+remedybg
+poop (github.com/andrewrk/poop) for profiling
+hyperfine
+gdb
+TAU - Turing Analysis Utilities ()
+
+### cli-tools
+noevim
 git
 make
 gettext
+ripgrep
 clang
 clangd
 gcc
 golang
-rust
-cargo
 nodejs
-noevim
 github-cli
 
 ## Environment
