@@ -43,6 +43,7 @@ xclip
 screenkey
 
 ## Tools/Utilities
+PDFMixTool(https://www.scarpetta.eu/pdfmixtool/#installation)
 htop
 chezmoi
 NetworkManager
