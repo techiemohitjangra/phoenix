@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+
+pacman -Sy --noconfirm python3-pip python3-env python3-neovim

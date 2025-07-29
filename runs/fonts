@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo pacman -Sy --noconfirm --needed ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols
+sudo pacman -Sy --noconfirm --needed ttf-profont-nerd
+sudo pacman -Sy --noconfirm --needed ttf-sharetech-mono-nerd

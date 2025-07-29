@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# tiling window manager
+sudo pacman -Sy --noconfirm --needed hyprland uwsm hyprpaper hyprlock
+
+# waybar
+sudo pacman -Sy --noconfirm --needed otf-font-awesome waybar

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+
+sudo pacman -Sy --noconfirm --needed git tldr man-db fzf go stylua bs btop gimp fd
+
+sudo pacman -Sy --noconfirm --needed ghostty github-cli
+
+sudo pacman -Sy --noconfirm ffmpeg imagemagick
+
+sudo pacman -Sy --noconfirm gdb valgrind

@@ -1,0 +1,18 @@
+#############
+### THEME ###
+#############
+theme = rose-pine
+
+
+############
+### FONT ###
+############
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-size = 20
+
+
+##############
+### LAYOUT ###
+##############
+window-padding-x = 10
+window-padding-y = 0

@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+sudo pacman -Sy ghostty --noconfirm --needed

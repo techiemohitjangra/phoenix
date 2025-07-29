@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+sudo pacman -Sy --noconfirm nvim lua51 luarocks
+
+# clone custom plugins here
+
+sudo luarocks install luacheck

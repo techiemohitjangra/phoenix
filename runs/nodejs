@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+
+sudo pacman -Sy --noconfirm nodejs npm
+npm config set prefix $HOME/.local/npm

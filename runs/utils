@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+sudo pacman -Sy --noconfirm mpv firefox dmenu wofi xclip gwenview
+sudo pacman -Sy --noconfirm curl wget tree
+sudo pacman -Sy --noconfirm git ripgrep pavucontrol xclip jq tldr
