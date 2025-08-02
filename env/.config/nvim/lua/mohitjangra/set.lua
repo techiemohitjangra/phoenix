@@ -11,7 +11,7 @@ vim.o.showmode = false
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
 vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
+    vim.g.clipboard = "unnamedplus"
 end)
 
 -- netrw config
@@ -25,10 +25,10 @@ vim.opt.nuw = 3
 vim.opt.relativenumber = true
 
 -- tabs/indents
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
+vim.opt.tabstop = 4 -- Number of spaces a tab counts for
+vim.opt.softtabstop = 4 -- Number of spaces for a tab during editing
+vim.opt.shiftwidth = 4 -- Number of spaces for each indent level
+vim.opt.expandtab = true -- Convert tabs to spaces
 
 vim.opt.smartindent = true
 vim.o.breakindent = true
@@ -45,10 +45,10 @@ vim.o.splitbelow = true
 --   See `:help lua-options`
 --   and `:help lua-options-guide`
 vim.o.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.o.inccommand = 'split'
+vim.o.inccommand = "split"
 
 -- Show which line your cursor is on
 vim.o.cursorline = true
@@ -57,7 +57,6 @@ vim.o.cursorline = true
 -- instead raise a dialog asking if you wish to save the current file(s)
 -- See `:help 'confirm'`
 vim.o.confirm = true
-
 
 vim.opt.wrap = false
 
@@ -87,22 +86,22 @@ vim.opt.colorcolumn = "80" -- colume width to draw colored line at
 
 -- Spell checking
 vim.opt.spell = true
-vim.opt.spelllang = 'en_us'
+vim.opt.spelllang = "en_us"
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
-vim.opt.completeopt = 'menuone,noselect'
+vim.opt.completeopt = "menuone,noselect"
 
 -- momentarily highlight yanked text
-local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
-vim.api.nvim_create_autocmd('TextYankPost', {
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
     group = highlight_group,
-    pattern = '*',
+    pattern = "*",
     callback = function()
         vim.highlight.on_yank({
-            higroup = 'IncSearch',
+            higroup = "IncSearch",
             timeout = 40,
         })
     end,

@@ -64,8 +64,8 @@ vim.keymap.set("n", "<leader>p", [["+p]])
 vim.keymap.set("n", "<leader>P", [["+P]])
 
 -- yank to system clipboard
-desc = "Highlight when yanking (copying) text", vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+y$]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
@@ -100,19 +100,20 @@ vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/lua/mohitjangra/plugin
 -- momentarily highlight yanked text
 local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = highlight_group,
-	pattern = "*",
-	callback = function()
-		vim.highlight.on_yank({
-			higroup = "IncSearch",
-			timeout = 40,
-		})
-	end,
+    desc = "Highlight when yanking (copying) text",
+    group = highlight_group,
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = "IncSearch",
+            timeout = 40,
+        })
+    end,
 })
 
 -- remove trailing white space on save
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-	group = MohitJangraGroup,
-	pattern = "*",
-	command = [[%s/\s\+$//e]],
+    group = MohitJangraGroup,
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
 })
