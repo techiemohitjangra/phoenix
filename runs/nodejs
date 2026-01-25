@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+pacman -Sy --needed --noconfirm \
+    nodejs \
+    npm \
+
+npm install -g neovim npm

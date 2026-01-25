@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+
+pacman -Sy --needed --noconfirm \
+    fd \
+
+sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
+    git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs
+    $HOME/.config/emacs/bin/doom install --force
+EOF

@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+pacman -Sy --needed --noconfirm \
+    git \
+    base-devel \
+
+sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
+    git clone https://aur.archlinux.org/yay-bin.git
+    cd yay-bin
+    makepkg -si
+
+    yay -Sy --needed  --noconfirm \
+        brave-bin \
+        librewolf-bin \
+        jellyfin-desktop \
+EOF

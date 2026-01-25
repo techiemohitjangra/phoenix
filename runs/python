@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+pacman -Sy --needed --noconfirm \
+	python3 \
+    python-pip \
+    python-neovim \

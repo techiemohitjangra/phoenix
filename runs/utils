@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+pacman -Sy --needed --noconfirm \
+    man-db \
+    tldr \
+    tree \
+    fzf \
+    less \
+    man-db \
+    samba \
+    cifs-utils \
+    netcat \
+    netstat-nat \
+    bat \
+    jq \
+    lsd \
+
+# properly displaying pop-ups
+pacman -Sy --needed --noconfirm \
+    xdg-desktop-portal \
+    xdg-desktop-portal-hyprland \
+    xdg-desktop-portal-gtk
+
+systemctl --user restart xdg-desktop-portal
+systemctl --user restart xdg-desktop-portal-hyprland
+systemctl --user restart xdg-desktop-portal-gtk

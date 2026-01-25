@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# TODO: remove after setup completes
+# return
+
+pacman -Sy --noconfirm --needed \
+    gcc \
+    clang \
+    cmake \
+    ninja \
+    libx11 \
+    libxcursor \
+    libxi \
+    libxrandr \
+    mesa-libgl \
+    fontconfig \
+    libwebp \
+
+
+sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
+    git clone --recursive https://github.com/aseprite/aseprite.git aseprite_source
+    pushd aseprite_source
+    ./build.sh --auto
+    popd
+EOF

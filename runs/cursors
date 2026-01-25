@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+pacman -Sy --needed --noconfirm \
+    capitaine-cursors
+
+
+ICONS_DIR="$HOME/.local/share/icons"
+
+# TODO: finish setting up cursors
+sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
+    wget https://github.com/ful1e5/BreezeX_Cursor/releases/download/v2.0.1/BreezeX.tar.xz
+    tar -xvf BreezeX.tar.xz -C $ICONS_DIR/
+    rm BreezeX*
+
+    git clone https://gitlab.com/Pummelfisch/future-cyan-hyprcursor.git $ICONS_DIR/future-cyan-hyprcursor
+EOF
+    # pushd $ICONS_DIR/future-cyan-hyprcursor
+    # rm LICENSE README.md Preview*.png
+    # mv * ../
+    # popd
+    # rm -f $ICONS_DIR/future-cyan-hyprcursor

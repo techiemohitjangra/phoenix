@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+pacman -Sy --needed --noconfirm \
+	ghostty \
+	nautilus \
+	dmenu \
+	mpv \
+	waybar \
+	spotify-launcher \
+	btop \
+	gwenview \
+	hyprpaper \
+	hyprcursor \
+	kdeconnect \
+	libreoffice \
+	transmission-qt \
+	transmission-cli \

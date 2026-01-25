@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+pacman -Sy --needed --noconfirm \
+	neovim \
+	lua-language-server \
+	luajit \
+    lua51 \
+    luarocks \
+	fd \
+	ripgrep \
+    tree-sitter-cli \
+    vim-devicons \
+    chafa \
