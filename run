@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 pacman -V &>/dev/null
 if (( $# == 0 )); then
     pacman -Syu
