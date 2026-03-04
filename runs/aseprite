@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-# TODO: remove after setup completes
-# return
+if [ -z "$MINIMAL" ];then
+	exit
+fi
+
 
 pacman -Sy --noconfirm --needed \
     gcc \
@@ -16,7 +18,9 @@ pacman -Sy --noconfirm --needed \
     fontconfig \
     libwebp \
 
-
+# =====================
+#       ASEPRITE
+# =====================
 sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
     git clone --recursive https://github.com/aseprite/aseprite.git aseprite_source
     pushd aseprite_source

@@ -1,8 +1,23 @@
 #!/usr/bin/env bash
 
+pacman -Sy --needed --noconfirm \
+	neovim \
+	lua-language-server \
+	luajit \
+	lua51 \
+	luarocks \
+	fd \
+	ripgrep \
+	tree-sitter-cli \
+	vim-devicons \
+	chafa \
+
+if [ -z "$MINIMAL" ];then
+	exit
+fi
 
 pacman -Sy --needed --noconfirm \
-    fd \
+    emacs \
 
 sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
     git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs

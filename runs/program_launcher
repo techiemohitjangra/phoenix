@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+# =====================
+# 	LAUNCHER 
+# =====================
+pacman -Sy --needed --noconfirm \
+	rofi \

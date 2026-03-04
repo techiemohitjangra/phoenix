@@ -1,16 +1,23 @@
 #!/usr/bin/env bash
 
+if [ -z $MINIMAL ];then
+	exit
+fi
+
 pacman -Sy --needed --noconfirm \
     git \
     base-devel \
 
+# =====================
+#          YAY 
+# =====================
 sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
     git clone https://aur.archlinux.org/yay-bin.git
     cd yay-bin
     makepkg -si
-
-    yay -Sy --needed  --noconfirm \
-        brave-bin \
-        librewolf-bin \
-        jellyfin-desktop \
 EOF
+
+yay -Sy --needed  --noconfirm \
+    brave-origin-beta-bin \
+    librewolf-bin \
+    jellyfin-desktop \

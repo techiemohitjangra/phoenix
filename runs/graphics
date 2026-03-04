@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [ -z "$MINIMAL" ]; then
+	exit
+fi
+
 pacman -Sy --needed --noconfirm \
     gimp \
     inkscape \

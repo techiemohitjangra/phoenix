@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+
+if [ -z $MINMAL ]; then
+	exit
+fi
+
 pacman -Sy --needed --noconfirm \
     capitaine-cursors
 

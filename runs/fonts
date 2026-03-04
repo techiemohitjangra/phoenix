@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
 
+# =====================
+#        FONTS 
+# =====================
 pacman -Sy --needed --noconfirm \
 	ttf-nerd-fonts-symbols \
 	ttf-nerd-fonts-symbols-common \
 	ttf-nerd-fonts-symbols-mono \
 	ttf-jetbrains-mono-nerd \
 	ttf-noto-nerd \
-	ttf-roboto \
-	ttf-roboto-mono \
-	ttf-roboto-mono-nerd \
 	noto-fonts \
 	noto-fonts-cjk \
 	noto-fonts-emoji \
 	noto-fonts-extra \
+
+if [ -z $MINIMAL ]; then
+	exit
+fi
+
+pacman -Sy --needed --noconfirm \
+	ttf-roboto \
+	ttf-roboto-mono \
+	ttf-roboto-mono-nerd \

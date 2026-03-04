@@ -1,0 +1,111 @@
+#!/usr/bin/env bash
+
+# ==================
+#        GIT
+# ==================
+sudo pacman -Sy --needed --noconfirm \
+    git \
+    github-cli \
+    jq \
+    curl \
+    wget \
+
+sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
+    gh auth login
+    gh auth setup-git
+EOF
+
+# ==================
+#       C/C++       
+# ==================
+pacman -Sy --needed --noconfirm \
+	clang \
+	gcc \
+	cmake \
+	make \
+
+# ==================
+#       GOLANG       
+# ==================
+pacman -Sy --needed --noconfirm \
+	go \
+	gopls \
+
+# ==================
+# ==== PYTHON ======
+# ==================
+pacman -Sy --needed --noconfirm \
+	python3 \
+	python-pip \
+	python-neovim \
+
+# ==================
+# ===== ZIG ========
+# ==================
+if [ -z ZIG_VERSION ];then
+	read -p "Zig Version: " ZIG_VERSION
+fi
+
+ZIG_VERSION=${ZIG_VERSION:-master}
+echo "Selected Zig Version: $ZIG_VERSION"
+ARCH=$(uname -m)
+OS=$(uname -s | tr '[:upper:]' '[:lower:]')
+
+case "$ARCH" in
+    x86_64) ARCH="x86_64" ;;
+    aarch64|arm64) ARCH="aarch64" ;; # Zig uses aarch64
+    *) echo "Unknown architecture: $ARCH"; exit 1 ;;
+esac
+
+case "$OS" in
+    linux*) OS="linux" ;;
+    darwin*) OS="macos" ;; # Zig's index uses "macos", not "darwin"
+    msys*|cygwin*|mingw*) OS="windows" ;;
+esac
+PLATFORM="${ARCH}-${OS}"
+echo "Selected Platform: $PLATFORM"
+# This is the safest way to extract the tarball URL
+URL=$(curl -s https://ziglang.org/download/index.json | \
+      jq -r --arg v "$ZIG_VERSION" --arg p "$PLATFORM" '.[$v][$p].tarball')
+
+echo "Downloading from $URL"
+mkdir -p $HOME/.local
+mkdir -p $HOME/.local/programs
+mkdir -p $HOME/.local/bin
+
+folder_name="zig-${PLATFORM}-${ZIG_VERSION}"
+file_name="zig-${PLATFORM}-${ZIG_VERSION}.tar"
+pushd $HOME/.local/programs &>/dev/null
+	echo "Download started"
+	wget -O $file_name $URL
+	echo "Download completed"
+
+	echo "Extraction started"
+	tar -xvf $file_name
+	echo "Extraction completed"
+
+	mv $folder_name zig
+	rm $file_name
+	ln -s $HOME/.local/programs/zig/zig $HOME/.local/bin/zig
+popd &>/dev/null
+
+if [ -z "$MINIMAL" ]; then
+	exit
+fi
+
+# ==================
+# ===== RUST =======
+# ==================
+pacman -Sy --needed --noconfirm \
+	rust \
+	cargo \
+	rust-analyzer \
+
+# ==================
+# ==== NODEJS ======
+# ==================
+pacman -Sy --needed --noconfirm \
+    nodejs \
+    npm \
+
+npm install -g neovim npm
