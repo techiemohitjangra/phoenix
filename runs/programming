@@ -93,6 +93,15 @@ if [ -z "$MINIMAL" ]; then
 	exit
 fi
 
+# === LSP ===
+pushd $HOME/.local/programs &>/dev/null
+	git clone --branch $ZIG_VERSION https://github.com/zigtools/zls
+	cd zls
+	zig build -Doptimize=ReleaseSafe
+	rm $HOME/.local/bin/zls
+	ln -s $HOME/.local/programs/zls/zig-out/bin/zls $HOME/.local/bin/zls
+popd &>/dev/null
+
 # ==================
 # ===== RUST =======
 # ==================
