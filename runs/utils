@@ -24,6 +24,7 @@ pacman -Sy --needed --noconfirm \
 	gwenview \
 	hyprpaper \
 	hyprcursor \
+	hyprshot \ 
 	kdeconnect \
 	libreoffice \
 	transmission-qt \

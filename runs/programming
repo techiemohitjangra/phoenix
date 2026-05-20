@@ -23,6 +23,11 @@ pacman -Sy --needed --noconfirm \
 	gcc \
 	cmake \
 	make \
+	clangd \
+
+sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
+    yay -Sy cmake-language-server
+EOF
 
 # ==================
 #       GOLANG       
@@ -37,7 +42,7 @@ pacman -Sy --needed --noconfirm \
 pacman -Sy --needed --noconfirm \
 	python3 \
 	python-pip \
-	python-neovim \
+	pyright \
 
 # ==================
 # ===== ZIG ========
