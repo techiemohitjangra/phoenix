@@ -41,6 +41,7 @@ export LIBVA_DRIVER_NAME=radeonsi
 export VDPAU_DRIVER=radeonsi
 export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.local/scripts
+export PATH=$PATH:$HOME/go/bin
 
 # ====================
 #       CUSTOM        
@@ -53,7 +54,7 @@ history_search_fzf() {
   out=$(history |
     sort |
     sed 's/^[[:space:]]*[0-9]\+[[:space:]]*//' |
-    fzf --no-sort --expect=enter,ctrl-e) || return
+    fzf --scheme=history --no-sort --expect=enter,ctrl-e) || return
 
   key=$(head -n1 <<<"$out")
   cmd=$(tail -n1 <<<"$out")

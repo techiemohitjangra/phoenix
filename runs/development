@@ -121,5 +121,11 @@ pacman -Sy --needed --noconfirm \
 pacman -Sy --needed --noconfirm \
     nodejs \
     npm \
+	typescript \
+	typesciprt-language-server \
+
+sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
+    yay -Sy vscode-langservers-extracted
+EOF
 
 npm install -g neovim npm
