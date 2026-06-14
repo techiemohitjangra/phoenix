@@ -8,14 +8,14 @@
 PS1='[\u@\h \W]\$ '
 
 # ====================
-#       CONFIG        
+#       CONFIG
 # ====================
 set -o vi
 bind -m vi
 
 
 # ====================
-#      HISTORY        
+#      HISTORY
 # ====================
 HISTSIZE=100000
 HISTFILESIZE=200000
@@ -26,7 +26,7 @@ PROMPT_COMMAND="history -a; history -n"
 
 
 # ====================
-#      ALIASES        
+#      ALIASES
 # ====================
 alias ls='lsd --color=auto'
 alias grep='grep --color=auto'
@@ -34,7 +34,7 @@ alias tree='tree -C'
 alias cat='bat'
 
 # ====================
-#      EXPORTS        
+#      EXPORTS
 # ====================
 export QT_QPA_PLATFORM=wayland
 export LIBVA_DRIVER_NAME=radeonsi
@@ -44,7 +44,7 @@ export PATH=$PATH:$HOME/.local/scripts
 export PATH=$PATH:$HOME/go/bin
 
 # ====================
-#       CUSTOM        
+#       CUSTOM
 # ====================
 
 # search history using fzf
@@ -72,12 +72,12 @@ history_search_fzf() {
 }
 
 # ====================
-#      KEYBINDS       
+#      KEYBINDS
 # ====================
 bind -x '"\C-h":"history_search_fzf"'
 bind -x '"\C-t":"tmux_sessionizer"'
 
 # ====================
-#      Execute        
+#      EXECUTE
 # ====================
 source $HOME/.bash_prompt.sh
