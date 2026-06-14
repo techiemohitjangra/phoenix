@@ -1,9 +1,9 @@
 theme = Rose Pine
 
-font-family = JetBrainsMono Nerd Font Mono
-font-family-bold = JetBrainsMono NFM Bold
-font-family-italic = JetBrainsMono NFM Italic
-font-family-bold-italic = JetBrainsMono NFM Bold Italic
+font-family = JetBrainsMonoNL Nerd Font Mono
+font-family-bold = JetBrainsMonoNL NFM Bold
+font-family-italic = JetBrainsMonoNL NFM Italic
+font-family-bold-italic = JetBrainsMonoNL NFM Bold Italic
 font-size = 16
 
 window-inherit-working-directory = false

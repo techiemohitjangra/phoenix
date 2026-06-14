@@ -193,8 +193,8 @@ hl.bind(mainMod .. ' + j', hl.dsp.focus({ direction = 'down' }))
 -- Move focus with mainMod + arrow keys
 hl.bind(mainMod .. ' + SHIFT + h', hl.dsp.window.move({ direction = 'left' }))
 hl.bind(mainMod .. ' + SHIFT + l', hl.dsp.window.move({ direction = 'right' }))
-hl.bind(mainMod .. ' + SHIFT + j', hl.dsp.window.move({ direction = 'up' }))
-hl.bind(mainMod .. ' + SHIFT + k', hl.dsp.window.move({ direction = 'down' }))
+hl.bind(mainMod .. ' + SHIFT + k', hl.dsp.window.move({ direction = 'up' }))
+hl.bind(mainMod .. ' + SHIFT + j', hl.dsp.window.move({ direction = 'down' }))
 
 -- Switch workspaces with mainMod + [0-9]
 for i = 1, 10 do
