@@ -10,14 +10,15 @@ pacman -Sy --needed --noconfirm \
 	ripgrep \
 	tree-sitter-cli \
 	vim-devicons \
-	chafa \
+	chafa
 
-if [ -z "$MINIMAL" ];then
+# non-essential editors, installed only with FULL setup
+if [ -z "$FULL" ];then
 	exit
 fi
 
 pacman -Sy --needed --noconfirm \
-    emacs \
+    emacs
 
 sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
     git clone --depth 1 https://github.com/doomemacs/doomemacs $HOME/.config/emacs

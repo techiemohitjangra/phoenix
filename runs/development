@@ -16,39 +16,39 @@ sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
 EOF
 
 # ==================
-#       C/C++       
+#       C/C++
 # ==================
 pacman -Sy --needed --noconfirm \
-	clang \
-	gcc \
-	cmake \
-	make \
-	clangd \
+    clang \
+    gcc \
+    cmake \
+    make \
+    clangd \
 
 sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
     yay -Sy cmake-language-server
 EOF
 
 # ==================
-#       GOLANG       
+#       GOLANG
 # ==================
 pacman -Sy --needed --noconfirm \
-	go \
-	gopls \
+    go \
+    gopls \
 
 # ==================
 # ==== PYTHON ======
 # ==================
 pacman -Sy --needed --noconfirm \
-	python3 \
-	python-pip \
-	pyright \
+    python3 \
+    python-pip \
+    pyright \
 
 # ==================
 # ===== ZIG ========
 # ==================
-if [ -z ZIG_VERSION ];then
-	read -p "Zig Version: " ZIG_VERSION
+if [ -z "$ZIG_VERSION" ];then
+    read -p "Zig Version: " ZIG_VERSION
 fi
 
 ZIG_VERSION=${ZIG_VERSION:-master}
@@ -81,39 +81,39 @@ mkdir -p $HOME/.local/bin
 folder_name="zig-${PLATFORM}-${ZIG_VERSION}"
 file_name="zig-${PLATFORM}-${ZIG_VERSION}.tar"
 pushd $HOME/.local/programs &>/dev/null
-	echo "Download started"
-	wget -O $file_name $URL
-	echo "Download completed"
+    echo "Download started"
+    wget -O $file_name $URL
+    echo "Download completed"
 
-	echo "Extraction started"
-	tar -xvf $file_name
-	echo "Extraction completed"
+    echo "Extraction started"
+    tar -xvf $file_name
+    echo "Extraction completed"
 
-	mv $folder_name zig
-	rm $file_name
-	ln -s $HOME/.local/programs/zig/zig $HOME/.local/bin/zig
+    mv $folder_name zig
+    rm $file_name
+    ln -s $HOME/.local/programs/zig/zig $HOME/.local/bin/zig
 popd &>/dev/null
 
 if [ -z "$MINIMAL" ]; then
-	exit
+    exit
 fi
 
 # === LSP ===
 pushd $HOME/.local/programs &>/dev/null
-	git clone --branch $ZIG_VERSION https://github.com/zigtools/zls
-	cd zls
-	zig build -Doptimize=ReleaseSafe
-	rm $HOME/.local/bin/zls
-	ln -s $HOME/.local/programs/zls/zig-out/bin/zls $HOME/.local/bin/zls
+    git clone --branch $ZIG_VERSION https://github.com/zigtools/zls
+    cd zls
+    zig build -Doptimize=ReleaseSafe
+    rm $HOME/.local/bin/zls
+    ln -s $HOME/.local/programs/zls/zig-out/bin/zls $HOME/.local/bin/zls
 popd &>/dev/null
 
 # ==================
 # ===== RUST =======
 # ==================
 pacman -Sy --needed --noconfirm \
-	rust \
-	cargo \
-	rust-analyzer \
+    rust \
+    cargo \
+    rust-analyzer \
 
 # ==================
 # ==== NODEJS ======
@@ -121,8 +121,8 @@ pacman -Sy --needed --noconfirm \
 pacman -Sy --needed --noconfirm \
     nodejs \
     npm \
-	typescript \
-	typesciprt-language-server \
+    typescript \
+    typescript-language-server
 
 sudo -u "${SUDO_USER:-$USER}" bash <<'EOF'
     yay -Sy vscode-langservers-extracted

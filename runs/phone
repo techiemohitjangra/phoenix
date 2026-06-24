@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 pacman -Sy --needed --noconfirm \
-		kdeconnect \
+        kdeconnect \
 
 ufw allow 1714:1764/udp
 ufw allow 1714:1764/tcp

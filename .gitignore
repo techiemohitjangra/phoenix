@@ -1,0 +1,27 @@
+# aseprite build artifacts
+aseprite_source/
+aseprite_source*/
+
+# package helpers built from AUR
+yay-bin/
+
+# downloaded archives / build artifacts
+*.tar
+*.tar.*
+*.zip
+*.7z
+*.AppImage
+
+# cursor themes downloaded by scripts
+BreezeX*
+future-cyan-hyprcursor/
+
+# zig toolchain downloaded by setup
+.local/programs/zig/
+.local/programs/zls/
+
+# editor / OS noise
+*~
+*.swp
+*.swo
+.DS_Store

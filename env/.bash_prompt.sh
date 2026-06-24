@@ -3,90 +3,80 @@ if [[ -f /usr/share/git/completion/git-prompt.sh ]]; then
     source /usr/share/git/completion/git-prompt.sh
 fi
 
-export GIT_PS1_SHOWDIRTYSTATE=1
-export GIT_PS1_SHOWSTASHSTATE=1
-export GIT_PS1_SHOWUNTRACKEDFILES=1
-export GIT_PS1_SHOWUPSTREAM=auto
 export GIT_OPTIONAL_LOCKS=0
 
-RESET="\[\033[0m\]"
+# Disable git-prompt's own status symbols so only our custom _git_state symbols appear
+export GIT_PS1_SHOWDIRTYSTATE=0
+export GIT_PS1_SHOWSTASHSTATE=0
+export GIT_PS1_SHOWUNTRACKEDFILES=0
+export GIT_PS1_SHOWUPSTREAM=""
 
+RESET="\[\033[0m\]"
 RED="\[\033[0;31m\]"
 GREEN="\[\033[0;32m\]"
 YELLOW="\[\033[0;33m\]"
 BLUE="\[\033[0;34m\]"
-MAGENTA="\[\033[0;35m\]"
-CYAN="\[\033[0;36m\]"
-GRAY="\[\033[0;90m\]"
 
-project_root() {
-    git rev-parse --show-toplevel 2>/dev/null
-}
+_git_state() {
+    local state=""
+    local staged=0 unstaged=0 untracked=0
+    local line x y
 
+    while IFS= read -r line; do
+        [[ -z "$line" ]] && continue
+        x="${line:0:1}"
+        y="${line:1:1}"
 
-zig_segment() {
-	local root
-	root=$(project_root) || return 
-	[[ -f "$root/build.zig" ]] || return
-	local v
-	v=$(zig version 2>/dev/null) || return
-	echo " ${CYAN}zig:${v}${RESET}"
-}
+        [[ "$x" == "?" || "$y" == "?" ]] && untracked=1
+        [[ "$x" != " " && "$x" != "?" ]] && staged=1
+        [[ "$y" != " " && "$y" != "?" ]] && unstaged=1
+    done <<< "$(git status --porcelain 2>/dev/null)"
 
-c_segment() {
-	local root
-	root=$(project_root) || return 
-	[[ -f "$root/Makefile" || -f "$root/CMakeLists.txt" || -n $(ls *.c 2>/dev/null) ]] || return
-	local cc
-	cc=$(cc --version 2>/dev/null | head -n1 | awk '{print $1}')
-	echo " ${CYAN}${cc}${RESET}"
-}
+    if (( staged && unstaged )); then
+        state+="✕"
+    elif (( staged )); then
+        state+="↑"
+    elif (( unstaged )); then
+        state+="→"
+    fi
 
-python_segment() {
-	local root
-	root=$(project_root) || return 
-    [[ -n "$VIRTUAL_ENV" || -f "$root/pyproject.toml" || -f "$root/requirements.txt" ]] || return
-    local v
-    v=$(python3 --version 2>/dev/null | awk '{print $2}')
-    echo " ${CYAN}py:${v}${RESET}"
-}
+    (( untracked )) && state+="+"
+    git rev-parse --verify refs/stash >/dev/null 2>&1 && state+="↓"
 
-go_segment(){ 
-	local root
-	root=$(project_root) || return 
-	[[ -f "$root/go.mod" || `ls -l *.go 2>/dev/null | wc -l` -gt 0 ]] || return 
-	local v
-	v=$(go version 2>/dev/null | awk '{printf $3}' | sed 's/^go//')
-	echo " ${CYAN}go:${v}${RESET}"
-}
-
-rust_segment(){
-	local root
-	root=$(project_root) || return 
-	[[ -f "$root/Cargo.toml" ]] || return 
-	local v
-	v=$(rustc --version 2>/dev/null | awk '{printf $2}')
-	echo " ${CYAN}rust:${v}${RESET}"
+    echo "$state"
 }
 
 __prompt_command() {
     local exit_code=$?
+    local arrow
 
     if [[ $exit_code -eq 0 ]]; then
-        ARROW="${GREEN}➜"
+        arrow="${GREEN}➜"
     else
-        ARROW="${RED}➜"
+        arrow="${RED}➜"
     fi
 
-    PS1="${ARROW} \
-${BLUE}\W\
-${MAGENTA}\
-$(zig_segment)\
-$(c_segment)\
-$(python_segment)\
-$(go_segment)\
-$(rust_segment)\
-${RESET} "
+    local branch state git_info
+    branch=$(__git_ps1 '%s')
+    state=$(_git_state)
+
+    # Branch color options:
+    # Option A: always yellow branch
+    local git_color="${YELLOW}"
+    # Option B: green when clean, yellow when dirty
+    # local git_color="${GREEN}"
+    # [[ -n "$state" ]] && git_color="${YELLOW}"
+
+    if [[ -n "$branch" ]]; then
+        git_info=" ${branch}"
+        [[ -n "$state" ]] && git_info+=" ${state}"
+    fi
+
+    PS1="${arrow}${RESET} ${BLUE}\W${RESET}${git_color}${git_info}${RESET} "
 }
 
-PROMPT_COMMAND=__prompt_command
+if [[ -n "$PROMPT_COMMAND" && "$PROMPT_COMMAND" != *"__prompt_command"* ]]; then
+    PROMPT_COMMAND="$PROMPT_COMMAND; __prompt_command"
+else
+    PROMPT_COMMAND=__prompt_command
+fi

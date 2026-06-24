@@ -1,37 +1,37 @@
 #!/usr/bin/env bash
 
 pacman -Sy --needed --noconfirm \
-	xclip \
-	rsync \
-	tldr \
-	tree \
-	fzf \
-	less \
-	man-db \
-	man-pages \
-	samba \
-	cifs-utils \
-	netcat \
-	netstat-nat \
-	bat \
-	jq \
-	lsd \
-	ghostty \
-	mpv \
-	waybar \
-	spotify-launcher \
-	btop \
-	gwenview \
-	hyprpaper \
-	hyprcursor \
-	hyprshot \ 
-	kdeconnect \
-	libreoffice \
-	transmission-qt \
-	transmission-cli \
+    xclip \
+    rsync \
+    tldr \
+    tree \
+    fzf \
+    less \
+    man-db \
+    man-pages \
+    samba \
+    cifs-utils \
+    netcat \
+    netstat-nat \
+    bat \
+    jq \
+    lsd \
+    ghostty \
+    mpv \
+    waybar \
+    spotify-launcher \
+    btop \
+    gwenview \
+    hyprpaper \
+    hyprcursor \
+    hyprshot \
+    libreoffice \
+    transmission-qt \
+    transmission-cli
 
-if [ -z $MINIMAL ];then
-	exit
+# desktop portal packages, installed only with FULL setup
+if [ -z "$FULL" ];then
+    exit
 fi
 
 # properly displaying pop-ups
@@ -43,7 +43,7 @@ pacman -Sy --needed --noconfirm \
 systemctl --user enable xdg-desktop-portal
 systemctl --user restart xdg-desktop-portal
 
-systemctl --user enable restart xdg-desktop-portal-hyprland
+systemctl --user enable xdg-desktop-portal-hyprland
 systemctl --user restart xdg-desktop-portal-hyprland
 
 systemctl --user enable xdg-desktop-portal-gtk

@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-if [ -z "$MINIMAL" ]; then
+if [ -z "$FULL" ]; then
 	exit
 fi
 
 pacman -Sy --needed --noconfirm \
     steam \
-    lutris \
+    lutris
 

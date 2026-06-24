@@ -1,24 +1,25 @@
 #!/usr/bin/env bash
 
 # =====================
-#        FONTS 
+#        FONTS
 # =====================
 pacman -Sy --needed --noconfirm \
-	ttf-nerd-fonts-symbols \
-	ttf-nerd-fonts-symbols-common \
-	ttf-nerd-fonts-symbols-mono \
-	ttf-jetbrains-mono-nerd \
-	ttf-noto-nerd \
-	noto-fonts \
-	noto-fonts-cjk \
-	noto-fonts-emoji \
-	noto-fonts-extra \
+    ttf-nerd-fonts-symbols \
+    ttf-nerd-fonts-symbols-common \
+    ttf-nerd-fonts-symbols-mono \
+    ttf-jetbrains-mono-nerd \
+    ttf-noto-nerd \
+    noto-fonts \
+    noto-fonts-cjk \
+    noto-fonts-emoji \
+    noto-fonts-extra
 
-if [ -z $MINIMAL ]; then
-	exit
+# non-essential fonts, installed only with FULL setup
+if [ -z "$FULL" ]; then
+    exit
 fi
 
 pacman -Sy --needed --noconfirm \
-	ttf-roboto \
-	ttf-roboto-mono \
-	ttf-roboto-mono-nerd \
+    ttf-roboto \
+    ttf-roboto-mono \
+    ttf-roboto-mono-nerd
