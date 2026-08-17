@@ -112,7 +112,7 @@ hl.config({
         kb_options = 'caps:swapescape',
         kb_rules = '',
 
-        follow_mouse = 1,
+        follow_mouse = 0,
 
         sensitivity = 0,
 
@@ -170,7 +170,7 @@ local mainMod = 'SUPER'
 
 hl.bind(mainMod .. ' + RETURN', hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. ' + Q', hl.dsp.window.close())
-hl.bind(mainMod .. ' + E', hl.dsp.exec_cmd('pkill hyprland && hyprland'))
+hl.bind(mainMod .. ' + SHIFT + E', hl.dsp.exec_cmd('pkill hyprland && hyprland'))
 hl.bind(mainMod .. ' + N', hl.dsp.exec_cmd(fileManager))
 hl.bind(mainMod .. ' + B', hl.dsp.exec_cmd(browser))
 hl.bind(mainMod .. ' + SHIFT + F', hl.dsp.window.float({ action = 'toggle' }))
